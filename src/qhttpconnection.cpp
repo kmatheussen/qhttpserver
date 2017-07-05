@@ -61,7 +61,7 @@ QHttpConnection::QHttpConnection(QTcpSocket *socket, QObject *parent)
 
 QHttpConnection::~QHttpConnection()
 {
-    delete m_socket;
+  //delete m_socket;
     m_socket = 0;
 
     free(m_parser);
@@ -73,8 +73,10 @@ QHttpConnection::~QHttpConnection()
 
 void QHttpConnection::socketDisconnected()
 {
-    deleteLater();
+  //   deleteLater();
     invalidateRequest();
+    m_socket->deleteLater();
+    deleteLater();
 }
 
 void QHttpConnection::invalidateRequest()
